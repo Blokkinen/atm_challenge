@@ -29,7 +29,7 @@ describe Atm do
   end
 
   it 'allow withdraw if the account has enough balance.' do
-    expected_output = { status: true, message: 'success', date: Date.today, amount: 45 }
+    expected_output = { status: true, message: 'success', date: Date.today, amount: 45, bills: [20, 20, 5] }
     expect(subject.withdraw(45, '1234', account)).to eq expected_output
   end
 
@@ -47,7 +47,7 @@ describe Atm do
   it 'rejects if the account status is disabled' do
     allow(account). to receive(:account_status).and_return(:disabled)
     expected_output = { status: false, message: 'card disabled', date: Date.today }
-    expect(subject.withdraw(20, '1234', account)).to eq expected_output
+    expect(subject.withdraw(21, '1234', account)).to eq expected_output
 
   end
 end
