@@ -1,10 +1,11 @@
 class Account
-  attr_accessor :pin_code, :account_status, :owner
+  attr_accessor :pin_code, :account_status, :owner, :balance
 
   def initialize(attrs = {})
     set_owner(attrs[:owner])
     @pin_code = generate_pin
     @account_status= :active
+    @balance = 0
   end
 
   def deactivate
