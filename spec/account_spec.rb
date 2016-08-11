@@ -1,7 +1,7 @@
 require './lib/account.rb'
 
 describe Account do
-  let(:person) {instance_double('person', name: 'Viktoria')}
+  let(:person) {double('person', name: 'Viktoria')}
   subject { described_class.new({owner: person}) }
 
   it 'is expected to have a 4 digit pin number on intitialize' do
