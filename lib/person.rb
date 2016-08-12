@@ -17,6 +17,7 @@ require './lib/account'
       stop_if_no_account
     else
       @account.balance = @account.balance + value
+      @cash -= value
     end
   end
 

@@ -40,15 +40,21 @@ describe Person do
   end
 
   describe 'can not manage funds if no account been created' do
-    # As a Person without a Bank Account,
-    # in order to prevent me from using the wrong bank account,
-    # I should NOT be able to to make a deposit.
     it 'can\'t deposit funds' do
       expect { subject.deposit(100) }.to raise_error(RuntimeError, 'No account present')
     end
   end
 
     it 'is expected to have an :account attribute' do
-    expect(subject.account).to be nil
+      expect(subject.account).to be nil
    end
+
+   it 'funds are added to the account balance - deducted from cash' do
+     subject.create_account
+     subject.cash = 100
+     subject.deposit(100)
+     expect(subject.account.balance).to be 100
+     expect(subject.cash).to be 0
+
+    end
   end
